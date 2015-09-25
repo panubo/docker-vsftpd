@@ -1,5 +1,8 @@
 # VSFTPD Docker Image
 
+[![Docker Repository on Quay.io](https://quay.io/repository/panubo/vsftpd/status "Docker Repository on Quay.io")](https://quay.io/repository/panubo/vsftpd)
+[![](https://badge.imagelayers.io/panubo/vsftpd:latest.svg)](https://imagelayers.io/?images= panubo/vsftpd:latest)
+
 This is a micro-service image for VSFTPD.
 
 There are a few limitations but it will work if you are using host networking
