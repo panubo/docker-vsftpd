@@ -25,6 +25,8 @@ The following environment variables are accepted.
 requires a hashed password such as the ones created with `mkpasswd -m sha-512`
 which is in the _whois_ debian package.
 
+- `FTP_USER_*`: Adds mutliple users. Value must be in the form of `username:hash`. Should not be used in conjunction with `FTP_USER` and `FTP_PASSWORD(_HASH)`.
+
 ## Usage Example
 
 ```

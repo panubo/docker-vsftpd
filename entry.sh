@@ -13,6 +13,13 @@ if [ ! -z "$FTP_USER" -a ! -z "$FTP_PASSWORD_HASH" ]; then
     /add-virtual-user.sh -d "$FTP_USER" "$FTP_PASSWORD_HASH"
 fi
 
+# Support multiple users
+while read user; do
+	IFS=: read name pass <<< ${!user}
+	echo "Adding user $name"
+	/add-virtual-user.sh "$name" "$pass"
+done < <(env | grep "FTP_USER_" | sed 's/^\(FTP_USER_[a-zA-Z0-9]*\)=.*/\1/')
+
 function vsftpd_stop {
   echo "Received SIGINT or SIGTERM. Shutting down vsftpd"
   # Get PID
