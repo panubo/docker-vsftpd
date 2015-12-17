@@ -27,6 +27,8 @@ which is in the _whois_ debian package.
 
 - `FTP_USER_*`: Adds mutliple users. Value must be in the form of `username:hash`. Should not be used in conjunction with `FTP_USER` and `FTP_PASSWORD(_HASH)`.
 
+- `FTP_USERS_ROOT`: sets `local_root=/srv/$USER` so each user is chrooted to their own directory instead of a shared one.
+
 ## Usage Example
 
 ```

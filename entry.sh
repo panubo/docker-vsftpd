@@ -20,6 +20,11 @@ while read user; do
 	/add-virtual-user.sh "$name" "$pass"
 done < <(env | grep "FTP_USER_" | sed 's/^\(FTP_USER_[a-zA-Z0-9]*\)=.*/\1/')
 
+# Support user directories
+if [ ! -z "$FTP_USERS_ROOT" ]; then
+	sed -i 's/local_root=.*/local_root=\/srv\/$USER/' /etc/vsftpd*.conf
+fi
+
 function vsftpd_stop {
   echo "Received SIGINT or SIGTERM. Shutting down vsftpd"
   # Get PID
