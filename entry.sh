@@ -15,7 +15,7 @@ fi
 
 # Support multiple users
 while read user; do
-	IFS=: read name pass <<< ${!user}
+	IFS=: read name pass <<< "${!user}"
 	echo "Adding user $name"
 	/add-virtual-user.sh "$name" "$pass"
 done < <(env | grep "FTP_USER_" | sed 's/^\(FTP_USER_[a-zA-Z0-9]*\)=.*/\1/')
