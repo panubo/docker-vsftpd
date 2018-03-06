@@ -1,8 +1,5 @@
 # VSFTPD Docker Image
 
-[![Docker Repository on Quay.io](https://quay.io/repository/panubo/vsftpd/status "Docker Repository on Quay.io")](https://quay.io/repository/panubo/vsftpd)
-[![](https://badge.imagelayers.io/panubo/vsftpd:latest.svg)](https://imagelayers.io/?images=panubo/vsftpd:latest)
-
 This is a micro-service image for VSFTPD.
 
 There are a few limitations but it will work if you are using host networking
@@ -32,7 +29,7 @@ which is in the _whois_ debian package.
 ## Usage Example
 
 ```
-docker run --rm -it -p 21:21 -p 4559:4559 -p 4560:4560 -p 4561:4561 -p 4562:4562 -p 4563:4563 -p 4564:4564 -e FTP_USER=panubo -e FTP_PASSWORD=panubo panubo/vsftpd
+docker run --rm -it -p 21:21 -p 4559:4559 -p 4560:4560 -p 4561:4561 -p 4562:4562 -p 4563:4563 -p 4564:4564 -e FTP_USER=panubo -e FTP_PASSWORD=panubo docker.io/panubo/vsftpd
 ```
 
 ## SSL Usage
@@ -45,5 +42,9 @@ This example assumes the ssl cert and key are in the same file and are mounted
 into the container read-only.
 
 ```
-docker run --rm -it -e FTP_USER=panubo -e FTP_PASSWORD_HASH='$6$XWpu...DwK1' -v `pwd`/server.pem:/etc/ssl/certs/vsftpd.crt:ro -v `pwd`/server.pem:/etc/ssl/private/vsftpd.key:ro panubo/vsftpd vsftpd /etc/vsftpd_ssl.conf
+docker run --rm -it \
+-e FTP_USER=panubo -e FTP_PASSWORD_HASH='$6$XWpu...DwK1' \
+-v `pwd`/server.pem:/etc/ssl/certs/vsftpd.crt:ro \
+-v `pwd`/server.pem:/etc/ssl/private/vsftpd.key:ro \
+docker.io/panubo/vsftpd vsftpd /etc/vsftpd_ssl.conf
 ```
