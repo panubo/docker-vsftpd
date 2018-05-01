@@ -26,6 +26,8 @@ which is in the _whois_ debian package.
 
 - `FTP_USERS_ROOT`: sets `local_root=/srv/$USER` so each user is chrooted to their own directory instead of a shared one.
 
+- `ALLOW_WRITABLE_ROOT`: if set to a non-empty value, it changes the owner of the default serving directory to `ftp:ftp`, matching the user and the group of the server process. Should only be used if the default serving directory is not backed by a volume, otherwise it possibly has no effect. This feature is defaults to being disabled.
+
 ## Usage Example
 
 ```
