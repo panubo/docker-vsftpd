@@ -14,8 +14,12 @@ build:
 bash:
 	docker run --rm -it $(docker_tag) bash
 
-run:
-	$(eval ID := $(shell docker run -d ${docker_tag}))
+env:
+	@echo "FTP_USER=ftp" >> env
+	@echo "FTP_PASSWORD=ftp" >> env
+
+run: env
+	$(eval ID := $(shell docker run -d --env-file env -v $(shell pwd)/srv:/srv ${docker_tag}))
 	$(eval IP := $(shell docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${ID}))
 	@echo "Running ${ID} @ ftp://${IP}"
 	@docker attach ${ID}
