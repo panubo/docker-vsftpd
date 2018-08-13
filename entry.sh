@@ -29,7 +29,7 @@ fi
 
 # Manage /srv permissions
 if [[ ! -z "${FTP_CHOWN_ROOT}" ]]; then
-  chown ftp:ftp /srv
+  chown -R ftp:ftp /srv
 fi
 
 vsftpd_stop() {
