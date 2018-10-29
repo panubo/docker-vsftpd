@@ -16,7 +16,7 @@ For example use `--build-arg FTP_UID=1000 --build-arg FTP_GID=1000` to set the U
 
 The following environment variables are accepted.
 
-- `FTP_USER`: Sets the default FTP user 
+- `FTP_USER`: Sets the default FTP user
 
 - `FTP_PASSWORD`: Plain text password (not recommended), or
 
@@ -29,6 +29,9 @@ which is in the _whois_ debian package.
 - `FTP_USERS_ROOT`: if set the vsftpd `local_root` will be set to `/srv/$USER` so each user is chrooted to their own directory instead of a shared one.
 
 - `FTP_CHOWN_ROOT`: if set `chown` will be run against `/srv` setting the FTP user and group as owner and group of the directory. _Note: chown is run non-recursively ie. will only chown the root`_
+
+- `FTP_PASV_ADDRESS`: override the IP address that vsftpd will advertise in
+  response to the PASV command
 
 ## Usage Example
 
@@ -57,7 +60,7 @@ docker.io/panubo/vsftpd vsftpd /etc/vsftpd_ssl.conf
 
 Currently `allow_writeable_chroot` is turned ON, however this isn't recommended as a security precaution. We might look at making this configurable in the future. The main consequence of turning this off is that the `local_root` can not be writable by the FTP user.
 
-See [serverfault: vsftp: whu is allow_writable_chroot=YES a bad idea?](https://serverfault.com/q/743949/259651) 
+See [serverfault: vsftp: whu is allow_writable_chroot=YES a bad idea?](https://serverfault.com/q/743949/259651)
 
 ## Logs
 
