@@ -35,6 +35,15 @@ which is in the _whois_ debian package.
 ```
 docker run --rm -it -p 21:21 -p 4559-4564:4559-4564 -e FTP_USER=ftp -e FTP_PASSWORD=ftp docker.io/panubo/vsftpd:latest
 ```
+## Multiple Usage Example
+```
+docker run --rm -it \
+-p 21:21 -p 4559-4564:4559-4564 -e FTP_USERS_ROOT=yes \
+-e FTP_USER_1=foo:$6$kbj...sDm1 \
+-e FTP_USER_2=bar:$6$/doix...kkk1 \
+-v /www/foo:/srv/foo -v /www/bar:/srv/bar \
+docker.io/panubo/vsftpd:latest
+```
 
 ## SSL Usage
 
