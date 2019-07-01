@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# vsftpd container entrypoint script 
+# vsftpd container entrypoint script
 
 set -e
 
@@ -25,6 +25,13 @@ done < <(env | grep "FTP_USER_" | sed 's/^\(FTP_USER_[a-zA-Z0-9]*\)=.*/\1/')
 if [[ ! -z "${FTP_USERS_ROOT}" ]]; then
   # shellcheck disable=SC2016
   sed -i 's/local_root=.*/local_root=\/srv\/$USER/' /etc/vsftpd*.conf
+fi
+
+# Support setting the passive address
+if [[ ! -z "$FTP_PASV_ADDRESS" ]]; then
+  for f in /etc/vsftpd*.conf; do
+    echo "pasv_address=${FTP_PASV_ADDRESS}" >> "$f"
+  done
 fi
 
 # Manage /srv permissions
